@@ -1,0 +1,19 @@
+{
+  "name": "chemixzchat",
+  "version": "1.0.0",
+  "description": "chat hecho en node y angular",
+  "main": "server.js",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "express": "^4.15.3",
+    "mongoose": "^4.11.5",
+    "socket.io": "^2.0.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "jose miguel briceno garces",
+  "license": "ISC"
+}
