@@ -1,0 +1,24 @@
+extends ./layout.html
+block contenido
+	<div ng-controller="loginController">
+		<center>
+			<h2>Login</h2>
+		</center>
+		<div class="col-xs-4 no-float center-block">
+			<form ng-submit="login()" class="mtop2m">
+				<div class="form-group">
+					<label> Email</label>
+					<input type="email" ng-model="userData.email" placeholder="Email" name="email" class="form-control">
+				</div>
+				<div class="form-group">
+					<label> Password</label>
+					<input type="password" ng-model="userData.password" placeholder="Password" class="form-control">
+				</div>
+				<div class="form-group">
+					<input type="submit" name="" value="logear" class="btn btn-primary">
+					<a href="/signup" title="" class="pull-right">Registrate</a>
+				</div>
+			</form>
+		</div>
+	</div>
+

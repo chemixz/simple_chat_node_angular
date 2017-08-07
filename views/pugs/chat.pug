@@ -1,0 +1,9 @@
+extends ./layout.pug
+block contenido
+	center
+		h1 este es mi chat
+		div(ng-controller="chatController")
+			center
+				div(class="col-xs-12 col-sm-8 col-md-4 text-left center-block no-float")
+		script(src="/socket.io/socket.io.js")
+		

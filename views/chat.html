@@ -1,0 +1,75 @@
+extends ./layout.html
+block contenido
+	<div ng-controller="chatController as ctr" >
+		<div class="container" >
+			<div class="row">
+
+				<div class="col-md-5">
+					<div class="panel panel-primary">
+						<div class="panel-heading" id="accordion">
+							<span class="glyphicon glyphicon-comment"></span> Conectado a Canal -> {{selectedRoom.name}}
+							<div class="btn-group pull-right">
+								<a type="button" class="btn btn-default btn-xs" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+									<span class="glyphicon glyphicon-chevron-down"></span>
+								</a>
+							</div>
+						</div>
+						<div class="panel-collapse collapsed" id="collapseOne">
+							<div class="panel-body" id="chatContent">
+								<ul class="chat" >
+
+									<li ng-repeat="msg in messages" ng-class="['clearfix ', currentUser._id == msg.user._id? 'right' : 'left' ]" >
+										<span ng-class="['chat-img ' , currentUser._id == msg.user._id? 'pull-right' : 'pull-left' ]">
+											<img src="images/logo3.jpg" ng-show="currentUser._id == msg.user._id" alt="User Avatar" class="img-circle" style="height: 40px; width: 40px;">
+											<img src="images/logo2.jpg" ng-show="currentUser._id != msg.user._id" alt="User Avatar" class="img-circle" style="height: 40px; width: 40px;">
+										</span>
+										<div class="chat-body clearfix">
+											<div class="header">
+												<strong class="primary-font" ng-show="currentUser._id != msg.user._id">{{msg.user.nickname}}</strong>
+												<small class="pull-right text-muted " ng-show="currentUser._id != msg.user._id">
+													<span class="glyphicon glyphicon-time"></span>{{msg.fecha}}
+												</small>
+
+												<strong class="pull-right primary-font" ng-show="currentUser._id == msg.user._id">{{msg.user.nickname}}</strong>
+												<small class="text-muted" ng-show="currentUser._id == msg.user._id">
+													<span class="glyphicon glyphicon-time"></span>{{msg.fecha}}
+												</small>
+
+											</div>
+											<p>{{msg.text}}</p>
+										</div>
+									</li>
+								</ul>
+							</div>
+							<div class="panel-footer">
+								<div class="input-group">
+									<input id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here..." ng-model="message" enter="sendMsg()">
+									<span class="input-group-btn">
+										<input type="button" class="btn btn-warning btn-sm" id="btn-chat" ng-click="sendMsg()" value="enviar">
+									</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-12">
+					<label> usuario {{currentUser.nickname}} </label>
+					<input type="button" name="" value="desconectarse" ng-click="signout()">
+				</div>
+				<div class="col-xs-12 no-float">
+					<div class="col-xs-4">
+						<select  id="id_bank" class="form-control" ng-model="roomSelector" >
+							<option value="">Seleccion room</option>
+							<option ng-repeat ="room in chatRooms" value="{{room}}">{{room.name}}</option>
+						</select>
+					</div>
+					<div class="col-xs-4">
+						<input type="button" value="Entrar al Canal" ng-click="joinChannel()">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+	<script  src="/socket.io/socket.io.js"></script>
+

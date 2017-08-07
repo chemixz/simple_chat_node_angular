@@ -1,0 +1,18 @@
+extends ./layout.pug
+block contenido
+	center
+		h1 Login
+		div(ng-controller="loginController")
+			center
+				div(class="col-xs-12 col-sm-8 col-md-4 text-left center-block no-float")
+					form(ng-submit="login()" class="mtop2m" )
+						div(class="form-group")
+							label(for="nickname" ,class="label-control") nickname
+							input(type="text",name="nickname" , ng-model="userData.nickname", placeholder="Ingresa nickname" , id="nickname" ,class="form-control")
+						div(class="form-group")
+							label(for="password") Password
+							input(type="password" , name="password" ,ng-model="userData.password" , placeholder="Password", id="password", class="form-control" )
+						div(class="form-group")
+							input(type="submit" ,value="Conectar" , class="btn btn-primary") 
+							a(href="/register" , class="pull-right") Registrate
+

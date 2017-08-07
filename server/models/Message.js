@@ -5,7 +5,8 @@ var models = require('./models'),
 var messagechema = Schema({
 		text: String,
 		fecha: {type: Date, default: Date.now},
-		user: {type: Schema.ObjectId, ref: 'User'}
+		user: {type: Schema.ObjectId, ref: 'User'},
+		chatrooms: {type: Schema.ObjectId, ref: 'chatRooms'}
 });
 
 

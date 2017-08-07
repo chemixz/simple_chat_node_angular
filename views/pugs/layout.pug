@@ -1,0 +1,21 @@
+doctype html
+html( ng-app="chatApp")
+	head
+		title #{title}
+		meta(chartset="utf-8")
+		link(href="/css/bootstrap.min.css" rel="stylesheet")
+		link(href="/css/style.css" rel="stylesheet")
+	body
+		nav(class="large-padding black_g ")
+			ul
+				li
+					a(href="/") Login
+				li
+					a(href="/chat") Index
+		div(class="container-fluid")
+			block contenido
+		script(src="js/vendors/jquery.min.js")
+		script(src="js/vendors/bootstrap.min.js")
+		script(src="js/vendors/angular.min.js")
+		script(src="js/chatMain.js")
+
