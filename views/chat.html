@@ -4,10 +4,10 @@ block contenido
 		<div class="container" >
 			<div class="row">
 
-				<div class="col-md-5">
+				<div class="col-sm-8">
 					<div class="panel panel-primary">
 						<div class="panel-heading" id="accordion">
-							<span class="glyphicon glyphicon-comment"></span> Conectado a Canal -> {{selectedRoom.name}}
+							<span class="glyphicon glyphicon-comment"></span><strong>  Conectado a Canal -> {{selectedRoom.name}} </strong>
 							<div class="btn-group pull-right">
 								<a type="button" class="btn btn-default btn-xs" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
 									<span class="glyphicon glyphicon-chevron-down"></span>
@@ -49,6 +49,18 @@ block contenido
 									</span>
 								</div>
 							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<div class="panel-heading" id="accordion">
+							<span class="glyphicon glyphicon-user"></span><strong> Usuarios Conectados</strong> 
+						</div>
+						<div class="panel-body" id="chatContent">
+							<ul style="list-style: none;" class="no-padding">
+								<li ng-repeat="user in usersOnline">{{user.nickname}}</li>
+							</ul>
 						</div>
 					</div>
 				</div>

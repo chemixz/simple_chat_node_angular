@@ -39,11 +39,15 @@ exports.signin = function(req,res){
 			if (user)
 			{
 				req.session.current_user = user;
-				console.log("ctr user encontramos session", req.session);
+				// console.log("ctr user encontramos session", req.session);
 				res.send({
 					retStatus: 'Success',
 					redirectTo: "/chat",
-					current_user:req.session.current_user,
+					current_user:{
+						_id: req.session.current_user._id,
+						nickname: req.session.current_user.nickname,
+						email: req.session.current_user.email
+					},
 				});
 			}
 			else{

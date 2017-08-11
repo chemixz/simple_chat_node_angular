@@ -88,7 +88,7 @@ angular.module("chatApp",[])
   .controller('loginController',function($scope, UserService,storageService){
     $scope.userData = {};
     console.log("controlador login")
-
+    var socket = io('http://localhost:3000/login');
     $scope.login = function()
     {
       if ($scope.userData.email && $scope.userData.password)
@@ -101,8 +101,9 @@ angular.module("chatApp",[])
             {
               console.log("usuario encontrado",response);
               $scope.userData = {};
-              storageService.setUser(response.data.current_user)
-               window.location = response.data.redirectTo;
+              storageService.setUser(response.data.current_user);
+              // socket.emit('setUserData',response.data.current_user);
+              window.location = response.data.redirectTo;
             }
           }
         );
@@ -139,10 +140,10 @@ angular.module("chatApp",[])
     $scope.selectedRoom = undefined;
     $scope.chatRooms = [];
     $scope.messages = [];
+    $scope.usersOnline = [];
+    var socket = io('http://localhost:3000/chat');
 
     $rootScope.currentUser = storageService.getUser();
-    var socket = io.connect();
-
     MultyServices.getRooms()
     .then(function(response){
       if (response.status == 200)
@@ -190,6 +191,17 @@ angular.module("chatApp",[])
       $scope.$apply(function(){
         $scope.messages.push(data);
         $("#chatContent").animate({ scrollTop: $('#chatContent')[0].scrollHeight}, 1);
+      });
+    });
+    socket.on('usersOnline' , function(data){
+      $scope.usersOnline = [];
+      var audio = new Audio("../sounds/message1.wav");
+      audio.play();
+      console.log("usuarios conectados",data)
+      $scope.$apply(function(){
+        $scope.usersOnline=data;
+
+        // $("#").animate({ scrollTop: $('#chatContent')[0].scrollHeight}, 1);
       });
     });
 

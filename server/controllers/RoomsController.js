@@ -1,24 +1,16 @@
 var chatRooms = require('../models/chatRooms');
 
 
-// exports.getRooms = function(req,res){
-// 	chatRooms.find()
-// 	.exec(function(err,rooms){
-// 		if (!err)
-// 		{
-// 			console.log("room encontradas",rooms);
-// 			res.send(rooms)
-// 		}
-// 		else
-// 		{
-// 			console.log(err);
-// 		}
-// 	})
-// }
-
 exports.joinToRoom = function(req,res){
 	req.session.current_user.current_channel = req.body.roomData;
-	res.send(req.session);
+	res.send({
+		current_user:{
+			_id: req.session.current_user._id,
+			nickname: req.session.current_user.nickname,
+			email: req.session.current_user.email,
+			current_channel: req.body.roomData
+		}
+	});
 }
 exports.getRooms = function(req,res){
 	chatRooms.find({},function(err,rooms){

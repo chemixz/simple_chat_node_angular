@@ -7,12 +7,12 @@ module.exports = function(req,res,next){
 	
 
 	if(!req.session.current_user){
-		console.log("middleware redireccionando al login ",req.session.current_user);
+		console.log("middleware redireccionando al login ");
 		res.redirect("/");
 	}
 	else
 	{
-		console.log("desde middleware session buscando a:",req.session.current_user );
+		// console.log("desde middleware session buscando a:",req.session.current_user );
 		// buscamos al usuario para 
 		User.findById(req.session.current_user._id , searchFields , function(err,user) {
 			// console.log("desde middleware Session", user)
@@ -24,7 +24,7 @@ module.exports = function(req,res,next){
 			}
 			else
 			{
-				console.log("desde session lo encontro", user)
+				// console.log("desde session lo encontro", user)
 				res.locals =  {current_user: user} // esto hacer merge al locals , no sobre escribe
 				next();
 			}
